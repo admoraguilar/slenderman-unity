@@ -10,9 +10,11 @@ namespace Slenderman.Characters
 		public class Movement
 		{
 			public float speed = 10f;
+			public float gravity = -9.8f;
 
 			private InputAxis _movementInput = new InputAxis();
 			private Vector3 _moveDirection = Vector3.zero;
+			private Vector3 _gravityDirection = Vector3.zero;
 
 			private FirstPersonController _controller = null;
 
@@ -28,12 +30,17 @@ namespace Slenderman.Characters
 			{
 				_movementInput.Update();
 				_moveDirection = _controller.transform.TransformDirection(new Vector3(_movementInput.axis.x, 0f, _movementInput.axis.y));
+
+				_gravityDirection = Vector3.zero;
+				if(!_controller.characterController.isGrounded) {
+					_gravityDirection.y = gravity;
+				}
 			}
 
 			public void FixedUpdate()
 			{
 				if(_movementInput.IsActive()) {
-					_controller.characterController.Move(_moveDirection * speed * Time.deltaTime);
+					_controller.characterController.Move(_moveDirection * gravity * speed * Time.deltaTime);
 				}
 			}
 		}
