@@ -37,10 +37,10 @@ namespace Slenderman
 		
 		private void FixedUpdate()
 		{
-			Ray cameraCenter = camera.ViewportPointToRay(Vector3.one * .5f);
+			Ray cameraCenterRay = camera.ViewportPointToRay(Vector3.one * .5f);
 
 			RaycastHitEqualityComparer comparer = new RaycastHitEqualityComparer();
-			RaycastHit[] newHits = Physics.RaycastAll(cameraCenter, rayLength);
+			RaycastHit[] newHits = Physics.RaycastAll(cameraCenterRay, rayLength);
 
 			IEnumerable<RaycastHit> exittingHits = hits.Except(newHits, comparer);
 			foreach(RaycastHit hit in exittingHits) { TriggerOnHitExit(hit); }
@@ -49,8 +49,21 @@ namespace Slenderman
 			foreach(RaycastHit hit in enterringHits) { TriggerOnHitEnter(hit); }
 
 			hits = newHits;
-
-			Debug.Log($"Hits: {hits.Count()}");
 		}
+
+#if UNITY_EDITOR
+		private void OnDrawGizmos()
+		{
+			Color oldColor = Gizmos.color;
+			Gizmos.color = Color.red;
+
+			Ray cameraCenterRay = camera.ViewportPointToRay(Vector3.one * .5f);
+			Gizmos.DrawLine(
+				cameraCenterRay.origin, 
+				cameraCenterRay.origin + (cameraCenterRay.direction * rayLength));
+
+			Gizmos.color = oldColor;
+		}
+#endif
 	}
 }
