@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Slenderman.Environment;
 
 namespace Slenderman.Characters
 {
@@ -13,15 +14,23 @@ namespace Slenderman.Characters
 		[SerializeField]
 		private InteractorCaster<RaycastHit> _interactorCaster = null;
 
+		[SerializeField]
+		private InventoryObject _inventoryObject = null;
+
 		private void OnHitEnter(RaycastHit hit)
 		{
-			
+			Debug.Log($"Hit Enter: {hit.transform.name}");
 		}
 
 		private void OnHitStay(IEnumerable<RaycastHit> hits)
 		{
 			if(Input.GetKeyDown(KeyCode.E)) {
 				foreach(RaycastHit hit in hits) {
+					if(hit.collider.TryGetComponent(out ItemHolder itemHolder)) {
+						_inventoryObject.inventory.AddItem(itemHolder.item);
+						Debug.Log($"Add item: {itemHolder.item.key}");
+					}
+
 					Debug.Log($"Queue [{hit.transform.name}] for destruction.");
 					Destroy(hit.transform.gameObject);
 				}
@@ -30,7 +39,7 @@ namespace Slenderman.Characters
 
 		private void OnHitExit(RaycastHit hit)
 		{
-
+			Debug.Log($"Hit Exit: {(hit.transform != null ? hit.transform.name : "Destroyed object")}");
 		}
 
 		private void Awake()
