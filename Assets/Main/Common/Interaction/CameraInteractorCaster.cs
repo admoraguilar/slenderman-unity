@@ -10,14 +10,15 @@ namespace Slenderman
 		{
 			public override bool Equals(RaycastHit x, RaycastHit y)
 			{
-				if(x.Equals(default) && y.Equals(default)) { return true; }
-				else if(x.Equals(default) || y.Equals(default)) { return false; }
-				return x.transform == y.transform;
+				if(x.transform == null && y.transform == null) { return true; }
+				else if(x.transform == null || y.transform == null) { return false; }
+				return x.transform.GetInstanceID() == y.transform.GetInstanceID();
 			}
 
 			public override int GetHashCode(RaycastHit obj)
 			{
-				return obj.GetHashCode();
+				if(obj.transform == null) { return -1; } 
+				else { return obj.transform.GetInstanceID(); }
 			}
 		}
 
