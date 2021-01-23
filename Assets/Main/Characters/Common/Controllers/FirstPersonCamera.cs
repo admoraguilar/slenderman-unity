@@ -26,7 +26,7 @@ namespace Slenderman.Characters
 			}
 		}
 
-		private void FixedUpdate()
+		private void LateUpdate()
 		{
 			UpdateTransform();
 		}

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Slenderman.Characters
 {
 	[RequireComponent(typeof(CharacterController))]
-	public class FirstPersonController : MonoBehaviour
+	public class FirstPersonCharacter : MonoBehaviour
 	{
 		[Serializable]
 		public class Movement
@@ -16,9 +16,9 @@ namespace Slenderman.Characters
 			private Vector3 _moveDirection = Vector3.zero;
 			private Vector3 _gravityDirection = Vector3.zero;
 
-			private FirstPersonController _controller = null;
+			private FirstPersonCharacter _controller = null;
 
-			internal void Init(FirstPersonController controller)
+			internal void Init(FirstPersonCharacter controller)
 			{
 				_controller = controller;
 				_movementInput.SetAxisSources(
@@ -40,7 +40,7 @@ namespace Slenderman.Characters
 			public void FixedUpdate()
 			{
 				if(_movementInput.IsActive()) {
-					_controller.characterController.Move(_moveDirection * gravity * speed * Time.deltaTime);
+					_controller.characterController.Move((_moveDirection + _gravityDirection) * speed * Time.deltaTime);
 				}
 			}
 		}
@@ -57,9 +57,9 @@ namespace Slenderman.Characters
 
 			private InputAxis _rotationInput = new InputAxis();
 
-			private FirstPersonController _controller = null;
+			private FirstPersonCharacter _controller = null;
 
-			internal void Init(FirstPersonController controller)
+			internal void Init(FirstPersonCharacter controller)
 			{
 				_controller = controller;
 				_rotationInput.SetAxisSources(
