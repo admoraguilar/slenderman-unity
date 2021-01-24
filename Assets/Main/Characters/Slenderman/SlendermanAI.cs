@@ -36,7 +36,7 @@ namespace Slenderman.Characters
 					playerCharacter.position +
 					(new Vector3(randomCirclePoint.x, 0f, randomCirclePoint.y) * 13f);
 
-				isPositionInCone = IsPointInCone(
+				isPositionInCone = MathUtilities.IsPointInCone(
 					generatedPosition, playerCharacter.position,
 					-playerCharacter.forward * 6.5f, 10f * Mathf.Deg2Rad, 13f);
 				isPositionInDistance = Vector3.Distance(
@@ -51,20 +51,6 @@ namespace Slenderman.Characters
 			slendermanTransform.position = generatedPosition;
 		}
 
-		// Source: http://nic-gamedev.blogspot.com/2011/11/using-vector-mathematics-and-bit-of.html
-		private bool IsPointInCone(
-			Vector3 point, Vector3 coneTip, 
-			Vector3 coneCenter, float fovRadians,
-			float maxDistance)
-		{
-			Vector3 diff = point - coneTip;
-
-			float length = diff.magnitude;
-			if(length > maxDistance) { return false; }
-
-			return Vector3.Dot(coneCenter, diff) >= Mathf.Cos(fovRadians);
-		}
-
 		private void Start()
 		{
 			StartCoroutine(GeneratePointsContinuously());
@@ -77,11 +63,6 @@ namespace Slenderman.Characters
 			} else {
 				Debug.Log("Slenderman isn't in view");
 			}
-
-			//if(Input.GetKeyDown(KeyCode.C)) {
-			//	Debug.Log("Setting slenderman position");
-			//	GeneratePosition();
-			//}
 		}
 	}
 }

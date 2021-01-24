@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Slenderman
 {
@@ -14,6 +15,12 @@ namespace Slenderman
 		private InventoryObject _inventoryObject = null;
 
 		private bool _isSatisfied = false;
+
+		private void Awake()
+		{
+			Assert.IsNotNull(_item);
+			Assert.IsNotNull(_inventoryObject);
+		}
 
 		private void Update()
 		{

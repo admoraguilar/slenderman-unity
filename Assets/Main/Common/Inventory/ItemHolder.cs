@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Slenderman.Environment
+namespace Slenderman
 {
 	public class ItemHolder : MonoBehaviour 
 	{

@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Slenderman.Environment;
 
 namespace Slenderman.Characters
 {

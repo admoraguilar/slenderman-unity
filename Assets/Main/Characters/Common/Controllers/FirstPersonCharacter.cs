@@ -29,7 +29,8 @@ namespace Slenderman.Characters
 			public void Update()
 			{
 				_movementInput.Update();
-				_moveDirection = _controller.transform.TransformDirection(new Vector3(_movementInput.axis.x, 0f, _movementInput.axis.y));
+				_moveDirection = _controller.transform.TransformDirection(
+					new Vector3(_movementInput.axis.x, 0f, _movementInput.axis.y));
 
 				_gravityDirection = Vector3.zero;
 				if(!_controller.characterController.isGrounded) {
@@ -40,7 +41,8 @@ namespace Slenderman.Characters
 			public void FixedUpdate()
 			{
 				if(_movementInput.IsActive()) {
-					_controller.characterController.Move((_moveDirection + _gravityDirection) * speed * Time.deltaTime);
+					_controller.characterController.Move(
+						(_moveDirection + _gravityDirection) * speed * Time.deltaTime);
 				}
 			}
 		}
