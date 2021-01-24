@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6933168961014668208}
   - component: {fileID: 6933168961014668223}
   - component: {fileID: 6933168961014668221}
-  - component: {fileID: 6933168961014668209}
+  - component: {fileID: 2104212988094048950}
   - component: {fileID: 6933168961014668220}
   - component: {fileID: 6933168961014668217}
   - component: {fileID: 6933168961014668222}
@@ -122,7 +122,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &6933168961014668209
+--- !u!136 &2104212988094048950
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movement:
-    speed: 3
+    speed: 1.5
     gravity: -9.8
   _rotation:
     pOV: {fileID: 6933168961628080518}
@@ -274,7 +274,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 8, z: 2.3509887e-38, w: 0}
+  m_BoundingSphereOverride: {x: 1.34644e-40, y: 5.9e-44, z: 0, w: 2.2e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
