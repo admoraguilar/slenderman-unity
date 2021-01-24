@@ -2,6 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+
+# Folders or files that could be included once GitLFS is implemented
+/[Aa]ssets/[Pp]ackages/
+/[Aa]ssets/Main/Environment/ForestDream
+/[Aa]ssets/Main/Environment/ForestNature
+
+# Unity-Generated files or Binary
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -10,8 +17,6 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Uu]serSettings/
-
-/[Aa]ssets/[Pp]ackages/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
